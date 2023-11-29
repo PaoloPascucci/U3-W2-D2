@@ -7,6 +7,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { ActivePostComponent } from './components/active-post/active-post.component';
 import { InactivePostComponent } from './components/inactive-post/inactive-post.component';
+import { PostItemComponent } from './components/post-item/post-item.component';
 
 const routes: Route[] = [
   {
@@ -29,6 +30,7 @@ const routes: Route[] = [
     HomeComponent,
     ActivePostComponent,
     InactivePostComponent,
+    PostItemComponent,
   ],
   imports: [BrowserModule, RouterModule.forRoot(routes)],
   providers: [],

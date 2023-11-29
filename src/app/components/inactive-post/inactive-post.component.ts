@@ -9,13 +9,19 @@ import { PostService } from '../services/posts.service';
 export class InactivePostComponent implements OnInit {
   inactivePosts: any = [];
 
+
   constructor(private postService: PostService) {}
 
   ngOnInit(): void {
-    this.postService.getPosts().then(posts => {
-      this.inactivePosts = posts.filter(post => post.active === false);
-      console.log(this.inactivePosts);
-      
-    });
+    this.updatePost();
+  }
+
+  updatePost(): void {
+    this.inactivePosts = this.postService.getPosts().filter(post => !post.active);
+  }
+
+  handlePostUpdate(event: { postId: number; active: boolean }): void {
+    this.postService.updatePost(event.postId, event.active);
+    this.updatePost();
   }
 }

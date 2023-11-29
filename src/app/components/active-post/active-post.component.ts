@@ -12,10 +12,17 @@ export class ActivePostComponent implements OnInit {
   constructor(private postService: PostService) {}
 
   ngOnInit(): void {
-    this.postService.getPosts().then(posts => {
-      this.activePosts = posts.filter(post => post.active === true);
-      console.log(this.activePosts);
-      
-    });
+    this.updatePost();
+  }
+
+  updatePost(): void {
+    this.activePosts = this.postService
+      .getPosts()
+      .filter((post) => post.active);
+  }
+
+  handlePostUpdate(event: { postId: number; active: boolean }): void {
+    this.postService.updatePost(event.postId, event.active);
+    this.updatePost();
   }
 }
